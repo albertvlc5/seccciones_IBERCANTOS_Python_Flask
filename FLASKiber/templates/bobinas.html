@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<HTML lang="es">
+ <link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+    <Head>
+      <meta charset="UTF-8">
+      <title>{{noperario}}</title>
+    </Head>
+    
+  <body style="background-color: #CACACA  ">
+    <form method="POST" action="/bobinas">
+      <img alt="logotipo"src="static/logo.png" width="200" /> 
+        
+          <legend><FONT FACE="Arial" SIZE="6"><b>BOBINAS</b></FONT></legend> 
+          {%if norden == None %}
+          {% set norden="" %}
+          {% endif %}
+        <table border CELLPADDING=10 CELLSPACING=0>
+          <thead>
+            <tr>
+              <th><p><FONT FACE="Arial" ><b>Número Orden:</b></th> <td align="center" valign="middle"><input type="text" style='width:100px; height:30px; font-size: 20px; font-weight: bold; ' name="Norden" placeholder="Numero de Orden"  required value="{{norden}}" ></FONT></p></td>
+              <th><p><FONT FACE="Arial" ><b>Codigo Bobina:</b></th> <td align="center" valign="middle"> <input type="text" style='width:150px; height:30px; font-size: 20px; font-weight: bold; ' name="Codigobobina"   placeholder="Autocompletado" value="{{codigobobina}}"></FONT></p></td>
+            </tr>
+            <tr>
+              <th><p><FONT FACE="Arial"><b>Fecha:</b></th> <td align="center" valign="middle"> <input type="text" style='width:100px; height:30px; font-size: 20px; font-weight: bold; '   name="Fecha" placeholder="Autocompletado" value="{{fecha}}"></FONT></p></td>
+              <th><p><FONT FACE="Arial" ><b>Nº Operario:</b></th> <td align="center" valign="middle"> <input type="number" style='width:100px; height:30px; font-size: 20px;  font-weight: bold; ' name="Noperario"  placeholder="Numero Operario" min="1" max="20" step="1" required value="{{noperario}}" ></FONT></p></td>
+            </tr>
+            <tr>
+              <th><p><FONT FACE="Arial"  ><b>Largo(mm):</b></th> <td align="center" valign="middle"> <input type="number" style='width:100px; height:30px; font-size: 20px;  font-weight: bold; '  name="Largo"  placeholder="Introduzca el largo de la bobina " placeholder="Numero" min="1" max="400" step="1" value="{{largo}}"  ></FONT></p></td>
+              <th><p><FONT FACE="Arial" ><b>Ancho(mm):</b></th> <td align="center" valign="middle"> <input type="number" style='width:100px; height:30px; font-size: 20px;  font-weight: bold; ' name="Ancho" placeholder="Introduzca el ancho de la bobina" placeholder="Numero" min="1" max="550" step="1" value="{{ancho}}"></FONT></p></td>
+              <th><p><FONT FACE="Arial" ><b>Especie:</b></th> <td align="center" valign="middle"> <input type="text" style='width:175px; height:30px; font-size: 20px; font-weight: bold; ' name="Especie"   placeholder="Introduzca Especie" value="{{especie}}"  ></FONT></p></td>
+            </tr>
+            <tr>
+              <th><p><FONT FACE="Arial"  ><b>Calidad:</b></th> <td align="center" valign="middle"> <input type="text" style='width:100px; height:30px; font-size: 20px; font-weight: bold; '  name="Calidad"  placeholder="Vista/Trasera/Intermedio" value="{{calidad}}"  ></FONT></p></td>
+              <th><p><FONT FACE="Arial"  ><b>Lote/Zizu:</b></th> <td align="center" valign="middle"> <input type="text" style='width:100px; height:30px; font-size: 20px; font-weight: bold; '  name="Zizu"  placeholder="Introduzca ZIZU" value="{{zizu}}"  ></FONT></p></td>
+              <th><p><FONT FACE="Arial" ><b>Ubicación:</b></th> <td align="center" valign="middle"> <input type="text" style='width:150px; height:30px; font-size: 20px; font-weight: bold; '  name="Ubicacion" placeholder="De stock/Para Stock" value="{{ubicacion}}"  ></FONT></p></td>       
+            </tr>
+          </thead>
+        </table>
+        <br></br>
+        
+        <input type="submit"  style='width:200px; height:30px; font-size: 20px;'  value="Enviar Bobina|Return">
+        <button type="submit" style='width:200px; height:30px; font-size: 20px;'  formaction="/etiqueta_bobinas" >Etiquetas</button> 
+        <button type="submit" style='width:200px; height:30px; font-size: 20px;'  formaction="/" >Volver a Inicio</button> 
+
+        <br></br>
+
+        <table border CELLPADDING=10 CELLSPACING=0>
+          <thead>
+            <tr>
+              <th>Nº Orden</th>
+              <th>Codigo Bobina</th>
+              <th>Largo</th>
+              <th>Ancho</th>
+              <th>M2</th>
+              <th>Especie</th>
+              <th>Calidad</th>
+              <th>Ubicación</th>
+            </tr>
+              {% for linea in lineas %}
+            <tr>
+              <td>{{linea[2]}}</td>
+              <td><b>{{linea[1]}}</b></td>
+              <td>{{linea[5]}}</td>
+              <td>{{linea[6]}}</td>
+              <td>{{linea[7]}}</td>
+              <td>{{linea[8]}}</td>
+              <td>{{linea[9]}}</td>
+              <td>{{linea[11]}}</td>
+            </tr>
+              {% endfor %}
+          </thead>
+        </table>
+    </form>
+  </body>
+</html>

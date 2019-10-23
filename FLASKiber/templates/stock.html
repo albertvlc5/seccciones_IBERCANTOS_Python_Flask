@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <Head>
+      <meta charset="UTF-8">
+      <title>Software Ibercantos</title>
+    </Head>
+    
+  <body style="background-color: #CACACA  ">
+    <form method="POST" action="/stock">
+      <img alt="logotipo"src="static/logo.png" width="200" /> 
+        <fieldset style="width:600px; background-color:#f2f2f2">
+          <legend><FONT FACE="Arial" SIZE="6"><b>STOCK</b></FONT></legend> 
+          {%if codlote == None %}
+          {% set codlote="" %}
+          {% endif %}
+          <p><FONT FACE="Arial"><b>Número Sollado:</b> <input type="text" name="Codlote"  placeholder="Número Automatico"  value="{{codlote}}"></FONT></p>
+          <p><FONT FACE="Arial"><b>Fecha:</b> <input type="text" name="Fecha" size="40"   placeholder="Autocompletado" value="{{fecha}}"></FONT></p>
+        </fieldset>
+
+        <fieldset style="width:600px; background-color:#f2f2f2">
+          <p><FONT FACE="Arial"><b>Especie:</b> <input type="text" name="Familia" size="40"placeholder="Introduzca la especie" value="{{familia}}"  ></FONT></p>
+          <p><FONT FACE="Arial"><b>Nombre Chapa:</b> <input type="text" name="Nombrechapa" size="40"placeholder="Introduzca el nombre de la chapa " value="{{nombrechapa}}"></FONT></p>
+          <p><FONT FACE="Arial"><b>Nombre Botanico/Referencia:</b> <input type="text" name="Nombrebotanico" size="40"placeholder="Introduzca el Nombre Botanico" value="{{nombrebotanico}}"></FONT></p>
+          <p><FONT FACE="Arial"><b>FSC:</b> <input type="text" name="Fsc" size="40"placeholder="Introduzca FSC" value="{{fsc}}"  ></FONT></p>
+          <p><FONT FACE="Arial"><b>Pais Origen:</b> <input type="text" name="Pais" size="40"placeholder="Introduzca el pais de origen" value="{{pais}}"  ></FONT></p>
+          <p><FONT FACE="Arial"><b>M2 Entrada:</b> <input type="text" name="M2entrada" size="40"placeholder="Introduzca M2 Entrada" value="{{m2entrada}}"  ></FONT></p>
+          
+          <p><FONT FACE="Arial"><b>Proveedor:</b> <input type="text" name="Proveedor"  size="40"placeholder="Introduzca el proveedor" value="{{proveedor}}" ></FONT></p>
+          <p><FONT FACE="Arial"><b>Precio:</b> <input type="text" name="Precio" size="40" placeholder="Introduzca Precio" value="{{precio}} " ></FONT></p>
+          <p><FONT FACE="Arial"><b>Anotaciones:</b> <input type="text" name="Anotaciones" size="40"placeholder="Introduzca si tiene alguna anotación" value="{{anotaciones}}" ></FONT></p>
+          <input type="submit"   value="Enviar Sollado|Return">
+          <p><FONT   FACE="Arial"><b>Estado del Sollado:</b> <input type="text" name="Mensaje" size="40" placeholder="Nuevo/Existente" value="{{msg}}"></p>
+        </fieldset>
+        <p></p>
+      <button type="submit"  formaction="/" >Volver a Inicio</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+	<link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+	<head>
+		<meta charset="UTF-8">
+		<title>Consulta Stock</title>
+	</head>
+
+	<body style="background-color: #CACACA ">
+		<form method="POST" action="/acabados_bobinas">
+			<img alt="logotipo"src="static/logo.png" width="200" /> 
+					<legend><FONT FACE="Arial" SIZE="4"><b>Acabados BOBINAS</b></FONT></legend>
+
+					{%if norden == None %}
+					{% set norden="" %}
+					{% endif %}
+
+					{%if codigobobina == None %}
+					{% set codigobobina="" %}
+					{% endif %}
+
+					{%if soporte == None %}
+					{% set soporte="" %}
+					{% endif %}
+
+					{%if lijado == None %}
+					{% set lijado="" %}
+					{% endif %}
+
+					{%if cola == None %}
+					{% set cola="" %}
+					{% endif %}
+
+					{%if natural == None %}
+					{% set natural="" %}
+					{% endif %}
+
+					{%if calibrado == None %}
+					{% set calibrado="" %}
+					{% endif %}
+
+					{%if primer == None %}
+					{% set primer="" %}
+					{% endif %}
+
+					{%if barnizado == None %}
+					{% set barnizado="" %}
+					{% endif %}
+
+					{%if alistonado == None %}
+					{% set alistonado="" %}
+					{% endif %}
+
+					{%if atraves == None %}
+					{% set atraves="" %}
+					{% endif %}
+
+				<table border CELLPADDING=10 CELLSPACING=0>
+          			<thead>
+            			<tr>
+							<th><p><FONT FACE="Arial"><b>Nº Bobina:</b> </th> <td align="center" valign="middle"><input type="text"  style='width:125px; height:30px; font-size: 20px; font-weight: bold; ' name="Codigobobina" placeholder="Introduzca el codigo de la bobina"  required value="{{codigobobina}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Nº Orden:</b></th> <td align="center" valign="middle"> <input type="text"  style='width:100px; height:30px; font-size: 20px; font-weight: bold; ' name="Norden" placeholder="Autocompletado"  minlength="8" maxlength="8"  value="{{norden}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Soporte:</b></th> <td align="center" valign="middle"> <input type="text" name="Soporte" placeholder="Introduzca acabado"  value="{{soporte}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Lijado:</b> </th> <td align="center" valign="middle"><input type="text" name="Lijado" placeholder="Introduzca acabado"  value="{{lijado}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Cola:</b></th> <td align="center" valign="middle"> <input type="text" name="Cola" placeholder="Introduzca acabado"  value="{{cola}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Natural:</b> </th> <td align="center" valign="middle"><input type="text" name="Natural" placeholder="Introduzca acabado"  value="{{natural}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Calibrado:</b> </th> <td align="center" valign="middle"><input type="text" name="Calibrado" placeholder="Introduzca acabado"  value="{{calibrado}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Primer:</b> </th> <td align="center" valign="middle"><input type="text" name="Primer" placeholder="Introduzca acabado"  value="{{primer}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Barnizado:</b></th> <td align="center" valign="middle"> <input type="text" name="Barnizado" placeholder="Introduzca acabado"  value="{{barnizado}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Alistonado:</b> </th> <td align="center" valign="middle"><input type="text" name="Alistonado" placeholder="Introduzca acabado"  value="{{alistonado}}" ></FONT></p></td>
+						</tr>
+            			<tr>
+						 	<th><p><FONT FACE="Arial"><b>Atraves:</b></th> <td align="center" valign="middle"> <input type="text" name="Atraves" placeholder="Introduzca acabado"  value="{{atraves}}" ></FONT></p></td>
+					 	</tr>
+         			</thead>
+         		</table>
+        	<br></br>
+
+				 	<input type="submit" value="Enviar Orden|Return">
+				 	<button type="submit" formaction="/" >Volver a Inicio</button> 
+				 	{%if msg != None %}
+            			<h1><b><font FACE="Arial" SIZE="6" color="red">{{msg}} </font></b></h1>
+         			{% endif %}
+				
+		</form>			
+	</body>
+</html>

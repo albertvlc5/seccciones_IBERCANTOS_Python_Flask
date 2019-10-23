@@ -1,0 +1,16 @@
+th{
+	background: Beige;
+	font-family: "Arial", serif;
+}
+td{
+	background: #f2f2f2;
+	font-family: "Arial", serif;
+}
+tr{
+	background: #f2f2f2;
+	font-family: "Arial", serif;
+}
+.centered
+{
+    text-align:center;
+}

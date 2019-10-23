@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+	<link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+	<head>
+		<meta charset="UTF-8">
+		<title>Consulta Stock</title>
+	</head>
+
+	<body style="background-color: #CACACA ">
+		<form method="POST" action="/consulta_corte">
+		<img alt="logotipo"src="static/logo.png" width="200" /> 
+				<fieldset style="width:400px; background-color:#f2f2f2">
+					<legend><FONT FACE="Arial" SIZE="4"><b>Consulta CORTE BOBINA</b></FONT></legend>
+
+					{%if codigobobina == None %}
+					{% set codigobobina ="" %}
+					{% endif %}
+
+				 	<p><FONT FACE="Arial"><b>Codigo Bobina:</b> <input type="text" name="Codigobobina" placeholder="Introduzca Codigobobina" required value="{{codigobobina}}" ></FONT></p>
+				 	<input type="submit" value="Consultar sobre la bobina" >
+				 	<button type="submit" formaction="/" >Volver a Inicio</button> 
+				</fieldset>
+		</form>
+			
+			{%if msg != None %}
+            	<h1><b><font FACE="Arial" SIZE="6" color="red">{{msg}} </font></b></h1>
+         	{% endif %}
+
+			<table border CELLPADDING=10 CELLSPACING=0>
+          <thead>
+            <tr>
+              <th>Nº Orden</th>
+              <th>Codigo Bobina</th>
+              <th>Rollos</th>
+              <th>Largo</th>
+              <th>Ancho</th>
+              <th>M2</th>
+              <th>Acabado</th>
+              <th>Especie</th>
+              <th>Ubicación</th>
+            </tr>
+              {% for linea in lineas %}
+            <tr>
+              <td>{{linea[2]}}</td>
+              <td><b>{{linea[1]}}</b></td>
+              <td>{{linea[5]}}</td>
+              <td>{{linea[6]}}</td>
+              <td>{{linea[7]}}</td>
+              <td>{{linea[8]}}</td>
+              <td>{{linea[9]}}</td>
+              <td>{{linea[10]}}</td>
+              <td>{{linea[11]}}</td>
+            </tr>
+              {% endfor %}
+          </thead>
+        </table>							
+	</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<HTML lang="es">
+  <link rel="stylesheet" type="text/css" href="static/estilos.css" media="screen" />
+    <Head>
+      <meta charset="UTF-8">
+      <title>Software Ibercantos</title>
+    </Head>
+  <header id="main-header">
+    <a id="logo-header" >
+      <span class="site-name">Software Ibercantos</span>
+      <span class="site-desc">Gestión Pedidos / Consultas Pedidos </span>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/pedido">Gestión Chapa</a></li>
+        <li><a href="/consulta_pedido">Consulta Pedidos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <body style="background-color: #CACACA ">
+      <br></br>
+      <img alt="logotipo"src="static/logo.png" width="400" /> 
+      <br></br>
+    <form method="POST" action="/">
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Ordenes</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/ordenes" >Ordenes</button>
+        </fieldset>
+        <p></p>
+      </div>
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consultar Info Orden</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/consulta_ordenes" >Ir a Consultas</button>
+        </fieldset>
+        <p></p>
+      </div>
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2" >
+            <legend><FONT FACE="Arial" SIZE="6"><b>Corte de Chapa</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px; 'formaction="/pedido" >Ir a Corte de Chapa</button>
+          </fieldset>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consultar Pedidos</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/consulta_pedido" >Ir a Consultas</button>
+        </fieldset>
+        <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2" >
+            <legend><FONT FACE="Arial" SIZE="6"><b>Dar alta Sollado</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px; 'formaction="/stock" >Ir a Insertar Sollados</button>
+          </fieldset>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consultar STOCK</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/consulta_stock" >Ir a Consultas</button>
+        </fieldset>
+        <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2" >
+            <legend><FONT FACE="Arial" SIZE="6"><b>Insertar Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px; 'formaction="/bobinas" >Ir a Insertar Bobinas</button>
+          </fieldset>
+          <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consultar Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/consulta_bobinas" >Ir a Consultas</button>
+        </fieldset>
+        <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2" >
+            <legend><FONT FACE="Arial" SIZE="6"><b>Acabados Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px; 'formaction="/acabados_bobinas" >Ir a Acabados Bobinas</button>
+          </fieldset>
+          <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consulta Estado de la Orden</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 20px;' formaction="/consulta_general_orden" >Consulta General Orden</button>
+        </fieldset>
+        <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2" >
+            <legend><FONT FACE="Arial" SIZE="6"><b>Prensa Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px; 'formaction="/prensa" >Ir a Prensa Bobinas</button>
+          </fieldset>
+          <p></p>
+      </div>
+      
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consulta Cortes Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 20px;' formaction="/consulta_corte" >Consulta Cortes Bobina</button>
+        </fieldset>
+        <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2" >
+            <legend><FONT FACE="Arial" SIZE="6"><b>Corte Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px; 'formaction="/corte" >Ir a Corte Bobinas</button>
+          </fieldset>
+          <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Consultar STOCK Bobinas</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/stockbobinas" >Ir a Consultas Bobinas</button>
+        </fieldset>
+        <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Copia Seguridad BDA</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;' formaction="/copia" >Copia Seguridad BDA</button>
+          </fieldset>
+          <p></p>
+      </div>
+
+      <div style="width:50%; float:left;">
+          <fieldset style="width:525px; height:100px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Finalizar Aplicación</b></FONT></legend>
+            <button type="submit" style='width:270px; height:50px; font-size: 25px;'  formaction="/shutdown" >Finalizar Aplicación</button>
+        </fieldset>
+        <p></p>
+      </div>
+    </form>
+  </body>
+</html>

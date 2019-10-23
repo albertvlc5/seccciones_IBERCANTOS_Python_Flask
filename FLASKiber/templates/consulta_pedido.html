@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+	<link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+	<head>
+		<meta charset="UTF-8">
+		<title>Consulta pedido</title>
+	</head>
+
+	<body style="background-color: #CACACA ">
+		<form method="POST" action="/consulta_pedido">
+			<img alt="logotipo"src="static/logo.png" width="200" /> 
+				<fieldset style="width:400px; background-color:#f2f2f2">
+					<legend><FONT FACE="Arial" SIZE="4"><b>Consulta Pedidos</b></FONT></legend>
+					{%if npedido == None %}
+					{% set npedido="" %}
+					{% endif %}
+				 	<p><FONT FACE="Arial"><b>Número Pedido:</b> <input type="text" name="Npedido" size="28" placeholder="Introduzca número de Pedido" value="{{npedido}}"></FONT></p>
+				 	<p><input type="submit" value="Consultar sobre el pedido" > <button type="submit" formaction="/consulta_orden" >Consultar una Orden</button></p>
+				 	<p><button onclick="imprSelec('muestra');"> Imprimir Pedido </button>
+				 	<button type="submit" formaction="/" >Volver a Inicio</button>  </p>
+				</fieldset>
+		</form>
+				<p></p>
+				<script type="text/javascript">
+					function imprSelec(muestra)
+					{var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+				</script>
+
+			<div id="muestra">
+				<table border CELLPADDING=10 CELLSPACING=0>
+					<thead>
+						<tr>
+							<th><b>Número Pedido</b></th>
+							<th>Fecha</th>
+							<th colspan="10">Ordenes</th> 
+						</tr>
+						<tr>
+							<td> {{npedido}} </td>
+							<td> {{fecha}} </td>
+							{% for orden in ordenes %}
+				     		<td> {{orden}}</td>
+				      		{% endfor %}
+						</tr>
+					</thead>
+				</table>
+
+				{% for orden in ordenes %}
+					<p><b><u>Orden:</u></b> {{orden}} </p> 
+					{% for sollado in sollados %}
+						{%if sollado[0]==orden %}
+						  <p><b><u>Sollado:</u></b> {{sollado[1:3]|join('  ')}} </p>
+						  <p><b><u>Paquetes:</u></b></p>
+						  <p><b>Lrg Anch Hjs</b></p>
+						  {% set total=[] %}	
+						  		  	{% for linea in lineas %}
+						  		{% if linea[0:3]==sollado %}
+						  			<p> {{linea[5:8]|join('  ')}} </p>
+						  			{% set kk=linea[8]| float %}
+						  			{% set _=total.append(kk) %} 
+						  		{%endif%}
+						  	{% endfor %}
+						<p><b><u>TOTAL m2 Sollado:</u></b> {{'%0.2f' % total|sum}}  </p> 
+						   <p>----------------------------------------------------</p>
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
+			</div>
+	</body>
+</html>

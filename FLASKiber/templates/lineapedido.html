@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<HTML lang="es">
+  <link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+  <Head>
+    <meta charset="UTF-8">
+    <title> {{norden}} </title>
+  </Head>
+   <img alt="logotipo"src="static/logo.png" width="200" /> 
+
+  <body style="background-color: #CACACA"> 
+      <script>
+        function validateFormManual() {
+          var tcb = document.forms["myForm"]["TipoCodBarras"].value;
+          var l = document.forms["myForm"]["Largo"].value;
+          var a = document.forms["myForm"]["Ancho"].value;
+          var h = document.forms["myForm"]["Hojas"].value;
+
+          if (tcb == "Manual" && (l=="" || a=="" || h=="")) {
+            alert("Inserta (Largo,Ancho,Hojas)");
+            return false;
+          }
+          else if(tcb =="Automatic" && (l!="" || a!="" || h!="")){
+            alert("Clicka Manual")
+            return false;
+          }         
+        }
+      </script>
+
+      <script>
+        var bleep = new Audio();
+        bleep.src = "static/beep.mp3";
+        function pita(){
+          bleep.play(); 
+        }
+      </script>
+
+    <form name="myForm" method="POST" action="/lineapedido" onsubmit="return validateFormManual()" oninput=" return pita()">
+        <div style="width:50%; float:left;">
+          <fieldset style="width:600px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="5"><b>Pedidos</b></FONT></legend> 
+            <p><FONT FACE="Arial"><b>Número Pedido:</b> <input type="text" name="Npedido" style='width:150px; height:30px; font-size: 20px;font-weight: bold; background-color:  #B6DEDF' size="40"placeholder="Introduzca número de Pedido" value="{{npedido}}"readonly ></FONT></p>
+            <p><FONT FACE="Arial"><b>Fecha:</b> <input type="text" name="Fecha" size="40"value="{{fecha}}" readonly ></FONT></p>
+          </fieldset>
+
+          <fieldset style="width:600px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="5"><b>Ordenes</b></FONT></legend> 
+            <p><FONT FACE="Arial"><b>Número Orden:</b> <input type="text" name="Norden" style='width:150px; height:30px; font-size: 20px;font-weight: bold; background-color:  #B6DEDF' size="40"placeholder="Introduzca número de Orden" value="{{norden}}" readonly ></FONT></p>
+          </fieldset>
+
+          <fieldset style="width:600px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="5"><b>Sollados</b></FONT></legend> 
+            <p><FONT FACE="Arial"><b>Lote/Sellado:</b> <input type="text" name="CodLote" style='width:140px; height:25px; font-size: 20px;font-weight: bold; background-color:  #B6DEDF' size="40"placeholder="Introduzca número de Sollado" value="{{codlote}}" readonly ></FONT></p>
+            <p><FONT FACE="Arial"><b>Calidad del lote:</b> <input type="text" name="Calidad" style='width:140px; height:25px; font-size: 20px;font-weight: bold; background-color:  #B6DEDF' size="40"placeholder="vista o trasera" value="{{calidad}}" readonly ></FONT></p>
+          </fieldset>
+
+          <fieldset style="width:600px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Paquetes del Lote</b></FONT></legend> 
+            <p><FONT style='width:270px; height:50px; font-size: 25px;'  FACE="Arial"><b>Tipo de Código:</FONT></b> 
+            <input type="radio" style='width:75px; height:19px; font-size: 10px;'  name="TipoCodBarras" value="Automatic" checked><FONT style='width:270px; height:50px; font-size: 25px;'  FACE="Arial"><b>Automatic<b></p>
+            <p><FONT style='width:270px; height:50px; font-size: 25px;'  FACE="Arial"><b>Código de Barras:</b><input type="text" name="CodBarras" style='width:270px; height:50px; font-size: 25px;'  size="40" autofocus placeholder="Escanee el codigo de Barras del paquete"></FONT></p>
+          </fieldset>
+
+          <fieldset style="width:590px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Inserción Paquete Manualmente</b></FONT></legend> 
+            <p><FONT style='width:270px; height:50px; font-size: 25px;'  FACE="Arial"><b>Tipo de Código:</FONT></b> 
+            <input type="radio" style='width:75px; height:19px; font-size: 10px;' name="TipoCodBarras" value="Manual"><b>Manual<b></p>
+            <FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><b>Largo:</b> <input type="number" name="Largo" min="40" max="400" step="1" style='width: 270px; height:50px; font-size: 25px;'  size="40"placeholder="Introduzca largo (cm)" pattern="^[0-9]+"></FONT></p>
+            <FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><p><b>Ancho:</b> <input type="number" name="Ancho" min="7" max="80" step="1" style='width:270px; height:50px; font-size: 25px;'  size="40"placeholder="Introduzca ancho(cm)" pattern="^[0-9]+"></FONT></p>
+            <FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><p><b>Hojas:</b> <input type="number" name="Hojas" min="1" max="200" step="1" style='width:270px; height:50px; font-size: 25px;'  size="40"placeholder="Introduzca el número de hojas" pattern="^[0-9]+"></FONT></p>
+          </fieldset>
+        </div>
+
+        <div style="width:50%; float:left;">
+          <p></p>
+          <p></p>
+            <table border CELLPADDING=10 CELLSPACING=0>
+              <thead>
+                <tr>
+                  <th>NumLin</th>
+                  <th>Codigo de Barras</th>
+                  <th>Largo</th>
+                  <th>Ancho</th>
+                  <th>Hojas</th>
+                  <th>M2</th>
+                </tr>
+                <tr>
+                  <td> <input type="text" name="NumLin1"  size="10" style='width:100px; height:40px; font-size: 20px;' value="{{numlin1}}"> </td>
+                  <td> <input type="text" name="CodBarras1" size="20" style='width:200px; height:40px; font-size: 20px;' value="{{codbarras1}}"> </td>
+                  <td><input type="text" name="Largo1" size="10" style='width:100px; height:40px; font-size: 20px;' value="{{largo1}}"> </td>
+                  <td><input type="text" name="Ancho1" size="10" style='width:100px; height:40px; font-size: 20px;' value="{{ancho1}}"> </td>
+                  <td><input type="text" name="Hojas1" size="10" style='width:100px; height:40px; font-size: 20px;' value="{{hojas1}}"> </td>
+                  <td><input type="text" name="M21" size="10" style='width:100px; height:40px; font-size: 20px;' value="{{m21}}"> </td>
+                </tr>
+              </thead>
+            </table>
+
+          <p></p>
+
+          <fieldset style="width:600px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Borrar Línea(Paquete)</b></FONT></legend> 
+            <p><FONT style='width:230px; height:30px; font-size: 20px;' FACE="Arial"><b>NúmLín: </b> <input type="text" name="NumLinB" style='width:230px; height:30px; font-size: 20px;' size="30" placeholder="Introduzca el número de línea a borrar" pattern="^[0-9]+" values="{{numlinb}}"></FONT></p>
+          </fieldset>
+            <p><input type="submit" style='width:230px; height:30px; font-size: 20px;'   value="Borrar Línea"></p>
+
+          <fieldset style="width:600px; background-color:#f2f2f2">
+            <legend><FONT FACE="Arial" SIZE="6"><b>Cálculos/Lote</b></FONT></legend> 
+            <p><FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><b>Suma m2/Lote: </b> <input type="text" name="Resultado" style='width:270px; height:50px; font-size: 25px;'  size="30" value="{{resultado}}"></FONT></p>
+            <p><FONT style='width:270px; height:50px; font-size: 25px;'  FACE="Arial"><b>Suma mL/Lote: </b><input type="text" name="Resultado1" style='width:270px; height:50px; font-size: 25px; font-weight: bold; background-color: #4CAF50; ' size="30" value="{{resultado1}}"></FONT></p>
+            <p><FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><b>Número de paquetes/Lote: </b> <input type="text" name="NumPaq" style='width:270px; height:50px; font-size: 25px;'   size="20" value="{{numpaq}}"></FONT></p>
+          </fieldset>
+
+          <p><input class="boton" type="submit" style='width:250px; height:40px; font-size: 20px;' value="Enviar paquete(enter)"></p>
+          <button type="submit" style='width:250px; height:40px; font-size: 20px;' formaction="/pedido" >Cambiar Pedido</button>
+          <button type="submit" style='width:250px; height:40px; font-size: 20px;' formaction="/orden" >Cambiar Orden</button>
+          <button type="submit" style='width:250px; height:40px; font-size: 20px;' formaction="/sollado" >Cambiar Sollado</button> 
+          <button type="submit" style='width:250px; height:40px; font-size: 20px;' formaction="/imprimeorden" >Imprimir Orden</button> 
+          <button type="submit" style='width:250px; height:40px; font-size: 20px;' formaction="/" >Guardar/Ir a Consultas</button> 
+          
+          {%if msg != None %}
+            <h1><b><font FACE="Arial" SIZE="9" color="red">{{msg}} </font><b><h1>
+          {% endif %}
+          
+      </div>
+    </form>
+  </body>
+</html>

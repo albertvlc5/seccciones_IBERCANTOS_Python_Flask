@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+    <Head>
+      <meta charset="UTF-8">
+      <title>Software Ibercantos</title>
+    </Head>
+    
+  <body style="background-color: #CACACA  ">
+    <form method="POST" action="/imprime_ordenes">
+        <script type="text/javascript">
+            function imprSelec(muestra)
+            {var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+        </script>
+
+      <div id="muestra">
+          <img alt="logotipo"src="static/logo.png" width="200" /> 
+          <br></br>
+          {%if norden == None %}
+          {% set norden="" %}
+          {% endif %}
+        <table border CELLPADDING=10 CELLSPACING=0>
+          <thead>
+            <tr>
+              <th><FONT FACE="Arial"><b>Ref. Clte:</b></th>
+              <!-- <td><input type="text" name="Refclte" size="20" style='width:200px; height:50px; font-size: 25px; font-weight: bold; ' value="{{refclte}}" placeholder="Autocompletado" ></FONT> </td> -->
+              <td><b><font FACE="Arial" SIZE="3">{{refclte}}</font></b></td>
+              <th><FONT FACE="Arial"><b>Número Orden:</b></th> 
+              <td><input type="text" name="Norden"  placeholder="Numero de Orden" size="10" value="{{norden}}" ></FONT></td> 
+              <td align="center" valign="middle" colspan="3"><img align="center" alt="fotocodigo" src="{{nomimg}}.png" width="100" /></p></td>
+            </tr>
+            <tr>
+              <th> <FONT FACE="Arial"><b>Nº Cliente:</b></th>
+              <!-- <td class="centered"> <input type="text" name="Ncliente" size="10"  value="{{ncliente}}" ></FONT></td> -->
+              <td>{{ncliente}}</td>
+              <th><FONT FACE="Arial"><b>Fecha:</b></FONT></th>
+              <!-- <td><input type="text" name="Fecha" size="10"   placeholder="Autocompletado" value="{{fecha}}"></FONT></td> -->
+              <td>{{fecha}}</td>
+              <th><FONT FACE="Arial"><b>Espesor(mm):</b></FONT></th>
+             <!--  <td><input type="text" name="Espessor" size="10"  value="{{espessor}}"></FONT></td> -->
+              <td>{{espessor}}</td> 
+            </tr>
+            <tr>
+              <th><FONT FACE="Arial"><b>Nº Rollos:</b></FONT></th>
+              <th><FONT FACE="Arial"><b>Ml/Rollo:</b></FONT></th>
+              <th><FONT FACE="Arial"><b>Ml/Total:</b></FONT></th>
+              <th><FONT FACE="Arial"><b>Ancho(mm):</b></FONT></th>
+              <th><FONT FACE="Arial"><b>Especie:</b></FONT></th>
+              <th><FONT FACE="Arial"><b>Acabado:</b></FONT></th>
+              <th><FONT FACE="Arial"><b>Total Ordenes:</b></FONT></th>
+            </tr>
+            <tr>
+            {% for linea in lineas %}
+                <tr>
+                  <td>{{linea[5]}}</td>
+                  <td>{{linea[6]}}</td>
+                  <td>{{linea[7]}}</td>
+                  <td>{{linea[8]}}</td>
+                  <td><b><font FACE="Arial" SIZE="3">{{linea[9]}}</font></b></td>
+                  <td>{{linea[10]}}</td>
+                  <td>{{linea[12]}}</td>
+                </tr>
+            {% endfor %}
+            </tr>
+          </thead>
+        </table>
+        <table border CELLPADDING=10 CELLSPACING=0>
+          <thead>
+              <td>{{comentario}}</td>
+          </thead>
+        </table>
+      </div>
+        <input type="submit"   value="Enviar Orden|Return">
+        <button onclick="imprSelec('muestra');"> Imprimir Etiqueta </button> 
+        <button type="submit"  formaction="/" >Volver a Inicio</button> 
+    </form>
+  </body>
+</html>

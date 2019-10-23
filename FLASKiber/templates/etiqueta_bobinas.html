@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <Head>
+      <meta charset="UTF-8">
+      <title>Software Ibercantos</title>
+    </Head>
+    
+  <body style="background-color: #CACACA  ">
+    <form method="POST" action="/etiqueta_bobinas">
+        <script type="text/javascript">
+            function imprSelec(muestra)
+            {var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+        </script>
+
+      <div id="muestra">
+        <fieldset style="width:600px; background-color:#f2f2f2">
+          <legend><FONT FACE="Arial" SIZE="6"><b>BOBINAS</b></FONT></legend> 
+          {%if norden == None %}
+          {% set norden="" %}
+          {% endif %}
+
+          {%if codigobobina == None %}
+          {% set codigobobina="" %}
+          {% endif %}
+          
+          <div style="width:50%; float:left;">
+            <p><FONT FACE="Arial"><b>Número Orden:</b> <input type="text" name="Norden"  placeholder="Numero de Orden" size="10" required value="{{norden}}" ></FONT></p>
+            <p><FONT FACE="Arial"><b>Fecha:</b> <input type="text" name="Fecha" size="10"   placeholder="Autocompletado" value="{{fecha}}"></FONT></p>
+            <p><FONT FACE="Arial"><b>Nº Operario:</b> <input type="number" name="Noperario" size="10" placeholder="Numero" min="1" max="20" step="1" required value={{noperario}} ></FONT></p>
+            <p><FONT FACE="Arial"><b>Ubicación:</b> <input type="text" name="Ubicacion" size="10" value="{{ubicacion}}"  ></FONT></p>  
+            <p><FONT FACE="Arial"><b>Código Bobina:</b> <input type="text"  style='width:150px; height:30px; font-size: 20px;font-weight: bold; ' name="Código Bobina" size="10"  value="{{codigobobina}}" ></FONT></p> 
+          </div> 
+          <div style="width:50%; float:left;">
+            <p><FONT FACE="Arial"><b>Largo(m):</b> <input type="text" name="Largo" size="5" value="{{largo}}"  ></FONT> <img align="right" alt="fotocodigo" src="{{nomimg}}.png" width="100" /></p>
+            <p><FONT FACE="Arial"><b>Ancho(mm):</b> <input type="text" name="Ancho" size="5" value="{{ancho}}"></FONT></p>
+            <p><FONT FACE="Arial"><b>Especie:</b> <input type="text" name="Especie" size="10" value="{{especie}}"  ></FONT></p>
+            <p><FONT FACE="Arial"><b>Calidad:</b> <input type="text" name="Calidad" size="5" value="{{calidad}}"  ></FONT></p>
+          </div>  
+        </fieldset>
+      </div>
+        <button onclick="imprSelec('muestra');"> Imprimir Etiqueta </button> 
+        <button type="submit"  formaction="/" >Volver a Inicio</button> 
+    </form>
+  </body>
+</html>
+

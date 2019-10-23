@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+	<link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+	<head>
+		<meta charset="UTF-8">
+		<title>Consulta Stock</title>
+	</head>
+
+	<body style="background-color: #CACACA ">
+		<form method="POST" action="/consulta_stock">
+			<img alt="logotipo"src="static/logo.png" width="200" /> 
+				<fieldset style="width:400px; background-color:#f2f2f2">
+					<legend><FONT FACE="Arial" SIZE="4"><b>Consulta STOCK</b></FONT></legend>
+
+					{%if codlote == None %}
+					{% set codlote="" %}
+					{% endif %}
+
+				 	<p><FONT FACE="Arial"><b>Número Sollado:</b> <input type="text" name="Codlote"  placeholder="Introduzca número de Sollado"  minlength="4" maxlength="4" required value="{{codlote}}" ></FONT></p>
+				 	<p><input type="submit" value="Consultar sobre el sollado" ></p><button type="submit" formaction="/etiqueta_stock" >Etiquetas</button> <button type="submit" formaction="/consulta_stock_general" >Consulta Avanzada</button>
+				 	<button type="submit" formaction="/" >Volver a Inicio</button> 
+				</fieldset>
+		</form>
+				<p></p>
+				<script type="text/javascript">
+					function imprSelec(muestra)
+					{var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+				</script>
+			{%if msg != None %}
+            	<h1><b><font FACE="Arial" SIZE="6" color="red">{{msg}} </font></b></h1>
+         	{% endif %}
+
+			<div id="muestra">
+				<table border CELLPADDING=10 CELLSPACING=0>
+					<thead>
+						<tr>
+							<th><b>CONSULTA SOLLADO</b></th>		
+						</tr>
+						<tr>
+							<td><b><u>Nº Sollado:</u></b> </td>
+							<td>{{codlote}} </td>
+						</tr>
+						<tr>
+							<td><b><u>Fecha Entrada:</u></b> </td>
+							<td>{{fecha}} </td>
+						</tr>
+						<tr>
+							<td><b><u>Nombre Chapa:</u></b> </td>
+							<td>{{nombrechapa}} </td>
+						</tr>
+						<tr>
+							<td><b><u>FSC:</u></b> </td>
+							<td>{{fsc}} </td>
+						</tr>
+						<tr>
+							<td><b><u>M2 Entrada:</u></b> </td>
+							<td>{{m2entrada}} </td>
+						</tr>
+						<tr>
+							<td><b><u>Precio (€):</u></b> </td>
+							<td>{{precio}} </td>
+						</tr>
+						<tr>
+							<td><b><u>M2 en Stock(Reales):</u></b> </td>
+							<td style=background-color:#00FFBF><b> {{'%0.2f' % resto|float}} </b></td>
+						</tr>
+					</thead>
+				</table>
+			<p>----------------------------------------------------</p>
+			<p><b><u>RESUMEN USO(GASTO SOLLADO):</u></b></p>
+			{% for linea in lineas %}
+				<p><b><u>Info(Nped/Norden/m2):</u></b> {{linea|join('  //  ')}} m2</p>
+			{% endfor %}	
+			</div>						
+	</body>
+</html>

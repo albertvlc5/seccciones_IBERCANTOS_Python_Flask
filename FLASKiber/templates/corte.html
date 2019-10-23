@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+    <Head>
+      <meta charset="UTF-8">
+      <title>Software Ibercantos</title>
+    </Head>
+    
+  <body style="background-color: #CACACA  ">
+    <form method="POST" action="/corte">
+      <img alt="logotipo"src="static/logo.png" width="200" /> 
+          <legend><FONT FACE="Arial" SIZE="6"><b>CORTE</b></FONT></legend> 
+          {%if codigobobina == None %}
+          {% set codigobobina="" %}
+          {% endif %}
+          <table border CELLPADDING=10 CELLSPACING=0>
+            <thead>
+              <tr>
+                <th><p><FONT FACE="Arial"style='width:270px; height:50px; font-size: 25px;' ><b>Codigo Bobina:</b></th> <td align="center" valign="middle"> <input type="text" name="Codigobobina" size="30" style='width:200px; height:50px; font-size: 25px; font-weight: bold; '  placeholder="Codigo Bobina" required value="{{codigobobina}}"></FONT></p></td>
+                <th><p><FONT FACE="Arial" style='width:270px; height:50px; font-size: 25px;' ><b>Número Orden:</b></th> <td align="center" valign="middle"> <input type="text" name="Norden" style='width:200px; height:50px; font-size: 25px; font-weight: bold; ' placeholder="Autocompletado"  value="{{norden}}" ></FONT></p></td>
+              </tr>
+              <tr>
+                <th><p><FONT FACE="Arial"style='width:270px; height:50px; font-size: 25px;' ><b>Fecha:</b></th> <td align="center" valign="middle"> <input type="text" name="Fecha" size="30" style='width:200px; height:50px; font-size: 25px;'  placeholder="Autocompletado" value="{{fecha}}"></FONT></p></td>
+                <th><p><FONT FACE="Arial" style='width:270px; height:50px; font-size: 25px;' ><b>Nº Operario:</b></th> <td align="center" valign="middle"> <input type="number" name="Noperario" size="40" style='width:100px; height:50px; font-size: 25px; font-weight: bold; 'placeholder="Numero Operario" min="1" max="10" step="1" required value={{noperario}} ></FONT></p></td>
+              </tr>
+              <tr>
+                <th><p><FONT FACE="Arial" style='width:270px; height:50px; font-size: 25px;' ><b>Rollos:</b></th> <td align="center" valign="middle"> <input type="number" name="Rollos" size="30" style='width:150px; height:50px; font-size: 25px; font-weight: bold; 'placeholder="Introduzca el numero de rollos " placeholder="Numero" min="1" max="100" step="1" value="{{rollos}}"  ></FONT></p></td>
+                <th><p><FONT FACE="Arial"style='width:270px; height:50px; font-size: 25px;' ><b>Acabado:</b></th> <td align="center" valign="middle"> <input type="text" name="Acabado" size="30" style='width:200px; height:50px; font-size: 25px;' placeholder="Acabado" value="{{acabado}}"  ></FONT></p> </td> 
+              </tr>
+              <tr>    
+                <th><p><FONT FACE="Arial" style='width:270px; height:50px; font-size: 25px;' ><b>Largo(mm):</b> </th> <td align="center" valign="middle"><input type="number" name="Largo" size="30" style='width:100px; height:50px; font-size: 25px; font-weight: bold; 'placeholder="Introduzca el largo de la bobina " placeholder="Numero" min="1" max="400" step="1" value="{{largo}}"  ></FONT></p></td>
+                <th><p><FONT FACE="Arial" style='width:270px; height:50px; font-size: 25px;' ><b>Ancho(mm):</b> </th> <td align="center" valign="middle"><input type="number" name="Ancho" size="30" style='width:100px; height:50px; font-size: 25px; font-weight: bold; ' placeholder="Introduzca el ancho de la bobina" placeholder="Numero" min="1" max="550" step="1" value="{{ancho}}"></FONT></p></td>
+              </tr>
+              <tr>
+                <th><p><FONT FACE="Arial" style='width:270px; height:50px; font-size: 25px;' ><b>Especie:</b> </th> <td align="center" valign="middle"><input type="text" name="Especie" size="30" style='width:200px; height:50px; font-size: 25px;' placeholder="Introduzca Especie" value="{{especie}}"  ></FONT></p></td>
+                <th><p><FONT FACE="Arial"style='width:270px; height:50px; font-size: 25px;' ><b>Ubicación:</b> </th> <td align="center" valign="middle"><input type="text" name="Ubicacion" size="30" style='width:200px; height:50px; font-size: 25px;' placeholder="De stock/Para Stock" value="{{ubicacion}}"  ></FONT></p></td>
+              </tr>
+            </thead>
+          </table>    
+        
+        <p></p>
+        
+        <input type="submit"  style='width:200px; height:30px; font-size: 20px;'  value="Enviar Rollos|Return">
+        <button type="submit" style='width:200px; height:30px; font-size: 20px;'  formaction="/" >Volver a Inicio</button> 
+
+        <br></br>
+
+        <table border CELLPADDING=10 CELLSPACING=0>
+          <thead>
+            <tr>
+              <th>Nº Orden</th>
+              <th>Codigo Bobina</th>
+              <th>Rollos</th>
+              <th>Largo</th>
+              <th>Ancho</th>
+              <th>M2</th>
+              <th>Acabado</th>
+              <th>Especie</th>
+              <th>Ubicación</th>
+            </tr>
+              {% for linea in lineas %}
+            <tr>
+              <td>{{linea[2]}}</td>
+              <td><b>{{linea[1]}}</b></td>
+              <td>{{linea[5]}}</td>
+              <td>{{linea[6]}}</td>
+              <td>{{linea[7]}}</td>
+              <td>{{linea[8]}}</td>
+              <td>{{linea[9]}}</td>
+              <td>{{linea[10]}}</td>
+              <td>{{linea[11]}}</td>
+            </tr>
+              {% endfor %}
+          </thead>
+        </table>
+    </form>
+  </body>
+</html>

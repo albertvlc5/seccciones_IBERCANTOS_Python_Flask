@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <Head>
+      <meta charset="UTF-8">
+      <title>Software Ibercantos</title>
+    </Head>
+    
+  <body style="background-color: #CACACA  ">
+    <form method="POST" action="/sollado">
+      <img alt="logotipo"src="static/logo.png" width="200" /> 
+        <fieldset style="width:600px; background-color:#f2f2f2">
+          <legend><FONT FACE="Arial" SIZE="6"><b>Pedidos</b></FONT></legend> 
+          <p><FONT style='width:270px; height:50px; font-size: 25px;'FACE="Arial"><b>Número Pedido:</b> <input type="text" name="Npedido" style='width:170px; height:50px; font-size: 25px;' size="40"placeholder="Introduzca número de Pedido" value="{{npedido}}" readonly ></FONT></p>
+          <p><FONT style='width:270px; height:50px; font-size: 25px;'FACE="Arial"><b>Fecha:</b> <input type="text" name="Fecha" style='width:170px; height:50px; font-size: 25px;' size="40"value="{{fecha}}" readonly ></FONT></p>
+        </fieldset>
+
+        <fieldset style="width:600px; background-color:#f2f2f2">
+          <legend><FONT style='width:270px; height:50px; font-size: 25px;'FACE="Arial" SIZE="6"><b>Ordenes</b></FONT></legend> 
+          <p><FONT style='width:270px; height:50px; font-size: 25px;'FACE="Arial"><b>Número Orden:</b> <input type="text" name="Norden" style='width:170px; height:50px; font-size: 25px;' size="40"placeholder="Introduzca número de Orden" value="{{norden}}" readonly ></FONT></p>
+        </fieldset>
+
+        <fieldset style="width:600px; background-color:#f2f2f2">
+          <legend><FONT FACE="Arial" SIZE="6"><b>Sollados</b></FONT></legend> 
+          <p><FONT style='width:270px; height:50px; font-size: 25px;'FACE="Arial"><b>Lote/Sollado:</b> <input type="text" name="CodLote" style='width:170px; height:50px; font-size: 25px;' minlength="4" maxlength="4" size="40"placeholder="Introduzca número de Sollado" pattern="^[0-9]+" required value="{{codlote}}" ></FONT></p>
+          <p><FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><label for="choose"><b>Calidad del lote:</b></FONT></label>
+          <input id="choose" style='width:170px; height:50px; font-size: 25px;' name="Calidad" pattern="vista|trasera" placeholder="vista o trasera" required value="{{calidad}}"> </p>
+          <input style='width:170px; height:30px; font-size: 20px;' type="submit" value="Enter Sollado">
+          <p><FONT style='width:270px; height:50px; font-size: 25px;'FACE="Arial"><b>Estado del lote:</b> <input type="text" name="Mensaje" style='width:200px; height:50px; font-size: 25px;' size="40" placeholder="Nuevo/Existente" value="{{msg}}"></FONT></p>
+        </fieldset>
+      <p></p>
+      <button style='width:270px; height:50px; font-size: 25px;' type="submit" formaction="/lineapedido">Insertar Paquetes</button>
+    </form>
+  </body>
+</html>

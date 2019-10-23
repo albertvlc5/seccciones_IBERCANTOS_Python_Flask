@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+	<link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+	<head>
+		<meta charset="UTF-8">
+		<title>Consulta Stock</title>
+	</head>
+
+	<body style="background-color: #CACACA ">
+		<form method="POST" action="/consulta_stock">
+			<script type="text/javascript">
+					function imprSelec(muestra)
+					{var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+			</script>
+				<div id="muestra">
+				<fieldset style="width:500px; background-color:#f2f2f2">
+					<legend><FONT FACE="Arial" SIZE="4"><b>SOLLADO</b></FONT></legend>
+					{%if codlote == None %}
+					{% set codlote="" %}
+					{% endif %}
+
+					<p><FONT style='width:280px; height:60px; font-size: 35px;'FACE="Arial"><b>Nº Sollado:</b> <input type="text" name="Codlote" style='width:150px; height:80px; font-size: 60px;' placeholder=""  value="{{codlote}}"></FONT> <img align="right" alt="fotocodigo" src="{{nomimg}}.png" width="100" /> </p>
+				 	<p><FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><b>Nombre Chapa:</b> <input type="text" name="Nombrechapa" style='width:300px; height:50px; font-size: 30px;' placeholder=""  value="{{nombrechapa}}"></FONT></p>
+				 	<p><FONT FACE="Arial"><b>FSC:</b> <input type="text" name="Fsc" placeholder="" value="{{fsc}}" ></FONT></p>
+				 	<p><FONT style='width:270px; height:50px; font-size: 25px;' FACE="Arial"><b>M2 Entrada:</b> <input type="text" name="M2entrada"  placeholder=""  style='width:150px; height:50px; font-size: 30px;' value="{{m2entrada}}" ></FONT></p>
+				 	<p><FONT FACE="Arial"><b>Precio:</b> <input type="text" name="Precio"  placeholder=""  value="{{precio}}" ></FONT>
+				 	<FONT FACE="Arial"><b>Proveedor:</b> <input type="text" name="Proveedor"  placeholder=""  value="{{proveedor}}" ></FONT>
+					<p><FONT FACE="Arial"><b>Fecha Entrada:</b> <input type="text" name="Fecha" style='width:120px; height:15px; font-size: 15px;'  placeholder=""  value="{{fecha}}" ></FONT> </p>		
+				</fieldset>
+				</div>
+			<button onclick="imprSelec('muestra');"> Imprimir Etiqueta </button> 
+			<button type="submit" formaction="/consulta_stock" >Atrás</button> 
+			<button type="submit" formaction="/" >Volver a Inicio</button>
+		</form>
+	</body>
+</html>
+				
+			
+
+			

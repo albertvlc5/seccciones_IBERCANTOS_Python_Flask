@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<link rel="stylesheet" type="text/css" href="static/tabla.css" media="screen" />
+	<head>
+		<meta charset="UTF-8">
+		<title>Consulta pedido</title>
+	</head>
+	<body style="background-color: #CACACA">
+		<form method="POST" action="/imprimeorden">
+				<fieldset style="width:475px; background-color:#f2f2f2">
+					<legend><FONT FACE="Arial" SIZE="4"><b>Consulta Pedidos</b></FONT></legend> 
+					<p><FONT FACE="Arial"><b>Número Pedido:</b> <input type="text" name="Npedido" size="40"placeholder="Introduzca número de Pedido" value={{npedido}} readonly ></FONT></p>
+					<p><FONT FACE="Arial"><b>Fecha:</b> <input type="text" name="Fecha" size="40"value={{fecha}} readonly ></FONT></p>
+				</fieldset>
+
+				<fieldset style="width:475px; background-color:#f2f2f2">
+					<legend><FONT FACE="Arial" SIZE="4"><b>Ordenes</b></FONT></legend> 
+					<p><FONT FACE="Arial"><b>Número Orden:</b> <input type="text" name="Norden" size="40" minlength="8" maxlength="8" placeholder="Introduzca número de Orden EJ:(1600-1)" value="{{norden}}"></FONT></p>
+					<input type="submit" value="Consultar sobre la orden" ><button type="submit" formaction="/" >Volver a Inicio</button>  </p><button onclick="imprSelec('muestra');"> Imprimir Etiqueta </button>
+				</fieldset>
+
+				<p></p>
+				
+				<div id="muestra">
+
+				<table border CELLPADDING=10 CELLSPACING=0>
+					<thead>
+						<tr>
+							<th><b>Número Pedido</b></th>
+							<th>Fecha</th>
+							<th colspan="10">Orden</th> 
+						</tr>
+						<tr>
+							<td> {{npedido}} </td>
+							<td> {{fecha}} </td>
+							{% for orden in ordenes %}
+				     		<td> {{orden}}</td>
+				      		{% endfor %}
+						</tr>
+					</thead>
+				</table>
+
+				<script type="text/javascript">
+				function imprSelec(muestra)
+				{var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+				</script>
+
+			<p></p>
+
+			<div id="muestra">
+				<div style="width:33%; float:left;">
+					
+					{% for sollado in sollados %}
+						{%if sollado[0]==norden %}
+								{% set total=[] %}	
+								  	{% set totalMl=[] %}
+								  	{% set totalAn=[] %}
+								  	{% set totalLa=[] %}
+								  	{% set totalHo=[] %}
+								  		{% for linea in lineas %}
+								  			{% if linea[0:3]==sollado %}
+								  				{% set kk=linea[8]| float %}
+								  				{% set _=total.append(kk) %} 
+
+								  				{% set mm=linea[9]| float %}
+								  				{% set _=totalMl.append(mm) %}
+
+								  				{% set aa=linea[5]| float %}
+								  				{% set _=totalAn.append(aa) %} 
+
+								  				{% set bb=linea[6]| float %}
+								  				{% set _=totalLa.append(bb) %} 
+
+								  				{% set cc=linea[7]| float %}
+								  				{% set _=totalHo.append(cc) %} 					  				
+								  			{%endif%}
+								  		{% endfor %}
+
+							<table border CELLPADDING=10 CELLSPACING=0>
+								<thead>
+									<tr>
+										<th><b>GUILLOTINA</b></th>							
+									</tr>
+									<tr>
+										<td><b><u>Orden:</u></b> </td>
+										<td>{{norden}}</td>
+									</tr>
+									<tr>
+										<td><b><u>Sollado:</u></b> </td>
+										<td>{{sollado[1:3]|join(' ')}}</td>
+									</tr>
+									<tr>
+										<td><b><u>TOTAL m2 Sollado:</u></b>  </td>
+										<td style=background-color:#00FFBF ><b>{{'%0.2f' % total|sum}}</b></td>
+									</tr>
+									<tr>
+										<td><b><u>TOTAL Ml Sollado:</u></b> </td>
+										<td>{{'%0.2f' % totalMl|sum}} </td>
+									</tr>
+
+									<tr>
+										<td><b><u>TOTAL Número de Paquetes:</u></b>  </td>
+										<td>{{'%0.2f' % lineas|count}}</td>
+									</tr>
+									<tr>
+										<td><b><u>Media Ancho Paquetes/Sollado:</u></b> </td>
+									{%set tot=totalAn|sum %}
+									{% set suma=lineas|count %}
+									{% set mediaan=tot/suma %}
+										<td>{{'%0.2f' %mediaan }}</td>
+									</tr>
+									<tr>
+										<td><b><u>Media Largo Paquetes/Sollado:</u></b> </td>
+									{%set tot=totalLa|sum %}
+									{% set suma=lineas|count %}
+									{% set mediala=tot/suma %}
+										<td>{{'%0.2f' %mediala }}</td>
+									</tr>
+									<tr>
+										<td><b><u>Media Hojas Paquetes/Sollado:</u></b> </td>
+									{%set tot=totalHo|sum %}
+									{% set suma=lineas|count %}
+									{% set mediaho=tot/suma %}
+										<td>{{'%0.2f' %mediaho }}</td>
+									</tr>
+								</thead>
+							</table>
+							<p>----------------------------------------------------</p>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</form>
+	</body>
+</html>

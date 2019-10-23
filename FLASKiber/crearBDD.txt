@@ -1,0 +1,105 @@
+CREATE TABLE `Pedido` (
+	`Npedido`	INTEGER,
+	`Fecha`	TEXT,
+	PRIMARY KEY(`Npedido`)
+);
+
+CREATE TABLE `Orden` (
+	`Npedido`	INTEGER,
+	`Norden`	TEXT,
+	PRIMARY KEY(`Npedido`,`Norden`),
+	FOREIGN KEY(`Npedido`) REFERENCES `Pedido`(`Npedido`)
+);
+
+CREATE TABLE `Sollado` (
+	`Npedido`	INTEGER,
+	`Norden`	INTEGER,
+	`Codlote`	TEXT,
+	`Calidad`	TEXT,
+	FOREIGN KEY(`Npedido`,`Norden`) REFERENCES `Orden`(`Npedido`,`Norden`),
+	PRIMARY KEY(`Npedido`,`Norden`,`Codlote`,`Calidad`)
+);
+
+CREATE TABLE `LineaPedido` (
+	`Numlin`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Codbarras`	TEXT UNIQUE,
+	`Largo`	REAL,
+	`Ancho`	REAL,
+	`Hojas`	INTEGER,
+	`M2`	REAL,
+	`Ml`	INTEGER,
+	`Tipocodbarras`	TEXT NOT NULL,
+	`Npedido`	INTEGER,
+	`Norden`	TEXT,
+	`Codlote`	TEXT,
+	`Calidad`	TEXT,
+	FOREIGN KEY(`Npedido`,`Norden`,`Codlote`,`Calidad`) REFERENCES `Sollado`(`Npedido`,`Norden`,`Codlote`,`Calidad`),
+	FOREIGN KEY(`Tipocodbarras`) REFERENCES `TipoCodigoBarras`(`TipoCodbarras`)
+);
+
+CREATE TABLE `Stocks` (
+	`Codlote`	INTEGER,
+	`Fecha`	TEXT,
+	`Familia`	TEXT,
+	`Nombrechapa`	TEXT,
+	`Fsc`	TEXT,
+	`Nombrebotanico`	TEXT,
+	`Pais`	TEXT,
+	`M2entrada`	TEXT,
+	`Proveedor`	TEXT,
+	`Precio`	REAL,
+	`Anotaciones`	TEXT,
+	PRIMARY KEY(`Codlote`)
+);
+
+CREATE TABLE `Bobinas` (
+	`Numlin`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Codigobobina`	TEXT,
+	`Norden`	INTEGER,
+	`Fecha`	INTEGER,
+	`Noperario`	INTEGER,
+	`Largo`	REAL,
+	`Ancho`	REAL,
+	`M2`	REAL,
+	`Especie`	TEXT,
+	`Calidad`	TEXT,
+	`Zizu`	TEXT,
+	`Ubicacion`	INTEGER,
+	`Soporte`	TEXT,
+	`Cola`	TEXT,
+	`Lijado`	TEXT,
+	`Natural`	TEXT,
+	`Calibrado`	TEXT,
+	`Primer`	TEXT,
+	`Barnizado`	TEXT,
+	`Alistonado`	TEXT,
+	`Atraves`	TEXT,
+	`Cortada`	TEXT,
+	`Prensada`	TEXT
+);
+
+CREATE TABLE `Corte` (
+	`Numlin`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Codigobobina`	TEXT,
+	`Norden`	INTEGER,
+	`Fecha`	INTEGER,
+	`Noperario`	INTEGER,
+	`Rollos`	INTEGER,
+	`Largo`	INTEGER,
+	`Ancho`	INTEGER,
+	`M2`	REAL,
+	`Acabado`	INTEGER,
+	`Especie`	TEXT,
+	`Ubicacion`	TEXT
+);
+
+CREATE TABLE `Prensa` (
+	`Numlin`	INTEGER,
+	`Norden`	TEXT,
+	`Fecha`	TEXT,
+	`Noperario`	INTEGER,
+	`Codigobobina`	INTEGER,
+	`Codigoprensa`	TEXT,
+	`Cortada`	INTEGER,
+	PRIMARY KEY(`Numlin`)
+);
